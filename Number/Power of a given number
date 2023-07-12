@@ -1,0 +1,58 @@
+// Using Math.pow
+
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner z=new Scanner(System.in);
+        int n,p,ans=1,i;
+        n=z.nextInt();
+        p=z.nextInt();
+        ans=(int)Math.pow(n,p);
+        System.out.print(ans);
+    }
+}
+
+____________________________________________________________________________________________________________________________________________________________________
+//Using while loop
+
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner z=new Scanner(System.in);
+        int n,p,ans=1,i;
+        n=z.nextInt();
+        p=z.nextInt();
+        while(p>0)
+        {
+            ans=ans*n;
+            p--;
+        }
+        System.out.print(ans);
+    }
+}
+______________________________________________________________________________________________________________________________________________________________________
+// Using for loop
+
+import java.util.Scanner;
+
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner z=new Scanner(System.in);
+        int n,p,ans=1,i;
+        n=z.nextInt();
+        p=z.nextInt();
+        for(i=1;i<=p;i++)
+        {
+            ans=ans*n;
+        }
+        System.out.print(ans);
+    }
+}
