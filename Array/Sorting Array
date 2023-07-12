@@ -1,0 +1,55 @@
+//Sorting array in decending order
+
+import java.util.Scanner;
+
+class Main
+{
+    public static void main (String[] args)
+    {
+    Scanner z=new Scanner(System.in);
+    Main ss=new Main();
+    int n=z.nextInt();
+    int arr[]=new int[n];
+    for(int i=0;i<n;i++) //not n-1 
+    arr[i]=z.nextInt();
+    ss.ascsort(arr,n);
+    }
+    void ascsort(int A[],int n)
+    {
+    int i,j;
+    for(i=0;i<n-1;i++)
+      for(j=i+1;j<n;j++)
+        if(A[i]<A[j])
+        A[i]=(A[i]+A[j])-(A[j]=A[i]);   //swap
+    for(i=0;i<n;i++)
+    System.out.print(A[i]+" ");
+    }
+}
+______________________________________________________________________________________________________________________________________________________________________
+// Sorting array in ascending order
+
+import java.util.Scanner;
+
+class Main
+{
+    public static void main (String[] args)
+    {
+    Scanner z=new Scanner(System.in);
+    Main ss=new Main();
+    int n=z.nextInt();
+    int arr[]=new int[n];
+    for(int i=0;i<n;i++) //not n-1 
+    arr[i]=z.nextInt();
+    ss.ascsort(arr,n);
+    }
+    void ascsort(int A[],int n)
+    {
+    int i,j;
+    for(i=0;i<n-1;i++)
+      for(j=i+1;j<n;j++)
+        if(A[i]>A[j])
+        A[i]=(A[i]+A[j])-(A[j]=A[i]);   //swap
+    for(i=0;i<n;i++)
+    System.out.print(A[i]+" ");
+    }
+}
