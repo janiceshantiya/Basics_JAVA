@@ -1,0 +1,46 @@
+/*Summation of the ASCII Value of the each character from the given string.
+
+Input Format
+abcd
+
+Constraints
+Input should be the string
+
+Output Format
+394
+
+Sample Input 0
+ABCD
+
+Sample Output 0
+266
+
+Sample Input 1
+AbCd
+
+Sample Output 1
+330 */
+
+
+
+import java.util.Scanner;
+
+public class Solution {
+    public static int sumASCIIValues(String str) {
+        int sum = 0;
+        for (char c : str.toCharArray()) {
+            sum += (int) c;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        
+        int result = sumASCIIValues(input);
+        System.out.println(result);
+
+        scanner.close();
+    }
+}
