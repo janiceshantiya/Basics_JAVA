@@ -1,0 +1,142 @@
+/*Given a 2D grid of characters, you have to search for all the words in a dictionary by moving only along two directions, either right or down. Print the word if it occurs.
+
+Input Format
+a z o l
+n x h o
+v y i v
+h r s e
+
+van zoho love are is
+
+Constraints
+Look at the inputs
+
+Output Format
+zoho
+love
+Is
+
+Sample Input 0
+r a j a
+v e n k
+r g k t
+g t a t
+
+raja ramu venkat tamil
+
+Sample Output 0
+raja
+venkat */
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class TrieNode {
+    TrieNode[] children;
+    boolean isEndOfWord;
+
+    TrieNode() {
+        children = new TrieNode[26];
+        isEndOfWord = false;
+    }
+}
+
+class Trie {
+    TrieNode root;
+
+    Trie() {
+        root = new TrieNode();
+    }
+
+    void insert(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            int index = ch - 'a';
+            if (node.children[index] == null) {
+                node.children[index] = new TrieNode();
+            }
+            node = node.children[index];
+        }
+        node.isEndOfWord = true;
+    }
+
+    boolean search(String word) {
+        TrieNode node = root;
+        for (char ch : word.toCharArray()) {
+            int index = ch - 'a';
+            if (node.children[index] == null) {
+                return false;
+            }
+            node = node.children[index];
+        }
+        return node.isEndOfWord;
+    }
+}
+
+public class SearchWordsInMatrix {
+
+    static Trie trie;
+
+    static void findWordsInGrid(char[][] grid, int m, int n, int i, int j, StringBuilder currentWord, List<String> result) {
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == '#') {
+            return;
+        }
+
+        currentWord.append(grid[i][j]);
+        String word = currentWord.toString();
+
+        if (trie.search(word)) {
+            result.add(word);
+            trie.insert(word); // Mark the word as visited to avoid duplicates
+        }
+
+        char temp = grid[i][j];
+        grid[i][j] = '#'; // Mark the cell as visited
+
+        // Explore in the right and down directions
+        findWordsInGrid(grid, m, n, i, j + 1, currentWord, result);
+        findWordsInGrid(grid, m, n, i + 1, j, currentWord, result);
+
+        grid[i][j] = temp; // Backtrack: revert the cell to its original character
+        currentWord.deleteCharAt(currentWord.length() - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int m = 4; // Number of rows
+        int n = 4; // Number of columns
+        char[][] grid = new char[m][n];
+
+        // Read the characters in the grid
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                grid[i][j] = scanner.next().charAt(0);
+            }
+        }
+
+        // Create a Trie and insert dictionary words
+        trie = new Trie();
+        int numWords = 3; // Number of dictionary words
+
+        for (int i = 0; i < numWords; i++) {
+            String word = scanner.next();
+            trie.insert(word);
+        }
+
+        // Find words in the grid
+        List<String> result = new ArrayList<>();
+        StringBuilder currentWord = new StringBuilder();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                findWordsInGrid(grid, m, n, i, j, currentWord, result);
+            }
+        }
+
+        // Print the words found in the grid
+        for (String word : result) {
+            System.out.println(word);
+        }
+    }
+}
