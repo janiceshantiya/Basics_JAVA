@@ -1,0 +1,61 @@
+/*convert binary to decimal, then decimal to hexadecimal.
+
+Input Format
+1011
+
+Constraints
+Nil
+
+Output Format
+B
+
+Sample Input 0
+1110
+
+Sample Output 0
+E /*
+
+import java.util.Scanner;
+
+public class BinaryToHexConversion {
+
+    static int binaryToDecimal(String binary) {
+        int decimal = 0;
+        int power = 0;
+
+        for (int i = binary.length() - 1; i >= 0; i--) {
+            if (binary.charAt(i) == '1') {
+                decimal += Math.pow(2, power);
+            }
+            power++;
+        }
+
+        return decimal;
+    }
+
+    static String decimalToHexadecimal(int decimal) {
+        StringBuilder hex = new StringBuilder();
+
+        while (decimal != 0) {
+            int remainder = decimal % 16;
+            if (remainder < 10) {
+                hex.insert(0, (char) ('0' + remainder));
+            } else {
+                hex.insert(0, (char) ('A' + remainder - 10));
+            }
+            decimal /= 16;
+        }
+
+        return hex.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String binary = scanner.nextLine();
+
+        int decimal = binaryToDecimal(binary);
+        String hexadecimal = decimalToHexadecimal(decimal);
+
+        System.out.println(hexadecimal);
+    }
+}
