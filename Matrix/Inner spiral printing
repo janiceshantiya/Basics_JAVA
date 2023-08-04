@@ -1,0 +1,87 @@
+Write a program to print inner spiral printing
+
+Input Format
+4
+
+1 2 3 4
+5 6 7 8
+9 1 2 3
+4 5 6 7
+
+Constraints
+Input should be the square matrix
+
+Output Format
+1 2 3 4 8 3 7 6 5 4 9 5 6 7 2 1
+
+Sample Input 0
+3
+1 2 3
+4 5 6
+7 8 9
+
+Sample Output 0
+1 2 3 6 9 8 7 4 5
+
+import java.util.Scanner;
+
+public class InnerSpiralPrinting {
+
+    public static void printInnerSpiral(int[][] matrix, int n) {
+        int left = 0, right = n - 1, top = 0, bottom = n - 1;
+        int[] result = new int[n * n];
+        int idx = 0;
+
+        while (left <= right && top <= bottom) {
+            // Traverse from left to right
+            for (int i = left; i <= right; i++) {
+                result[idx++] = matrix[top][i];
+            }
+
+            // Traverse from top to bottom
+            for (int i = top + 1; i <= bottom; i++) {
+                result[idx++] = matrix[i][right];
+            }
+
+            // Traverse from right to left
+            if (top != bottom) {
+                for (int i = right - 1; i >= left; i--) {
+                    result[idx++] = matrix[bottom][i];
+                }
+            }
+
+            // Traverse from bottom to top
+            if (left != right) {
+                for (int i = bottom - 1; i > top; i--) {
+                    result[idx++] = matrix[i][left];
+                }
+            }
+
+            left++;
+            right--;
+            top++;
+            bottom--;
+        }
+
+        // Print the result array
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[][] matrix = new int[n][n];
+
+        // Read the matrix elements
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Print the inner spiral
+        printInnerSpiral(matrix, n);
+    }
+}
