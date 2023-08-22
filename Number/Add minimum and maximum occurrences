@@ -1,0 +1,52 @@
+Write a program to add minimum and maximum occurrences.
+
+Input Format
+10
+4 4 4 6 4 3 6 4 3 6
+
+Constraints
+4<=n<=15
+1<=E<=10
+
+Output Format
+7
+
+Sample Input 0
+8
+2 3 2 3 5 2 6 5
+
+Sample Output 0
+4
+
+Explanation 
+Here Element 2 occurs 3 times which is the highest occurances, 6 occurs once which is the lowest occurances. So the addition of 3+1 = 4
+
+
+import java.util.*;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int size = scanner.nextInt();
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        int sum = findSumOfMinMaxOccurrences(arr);
+        System.out.println(sum);
+        scanner.close();
+    }
+    public static int findSumOfMinMaxOccurrences(int[] arr) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : arr) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+        int minOccurrences = Integer.MAX_VALUE;
+        int maxOccurrences = Integer.MIN_VALUE;
+        for (int count : frequencyMap.values()) {
+            minOccurrences = Math.min(minOccurrences, count);
+            maxOccurrences = Math.max(maxOccurrences, count);
+        }
+
+        return minOccurrences + maxOccurrences;
+    }
+}
