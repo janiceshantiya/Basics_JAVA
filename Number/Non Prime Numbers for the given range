@@ -1,0 +1,51 @@
+Write a program to print the non prime numbers for the given range
+
+Input Format
+10
+20
+
+Constraints
+Input should be numbers
+
+Output Format
+10 12 14 15 16 18 20
+
+Sample Input 0
+15
+20
+
+Sample Output 1
+15 16 18 20
+
+
+
+import java.util.Scanner;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int lowerBound = scanner.nextInt();
+        int upperBound = scanner.nextInt();
+        for (int num = lowerBound; num <= upperBound; num++) {
+            if (!isPrime(num)) {
+                System.out.print(num + " ");
+            }
+        }
+        
+        scanner.close();
+    }
+    
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
