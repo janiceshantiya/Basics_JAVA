@@ -1,0 +1,54 @@
+Write a program to find maximum and minimum elements from the given array. Print the division of max with min value.
+
+Input Format
+6
+3 2 4 5 7 6
+
+Constraints
+All should be numbers
+
+Output Format
+3
+
+Sample Input
+5
+8 7 3 2 9
+
+Sample Output 
+4
+
+Explanation 
+Maximum Element: 9 Minimum Element: 2 Result = 9/2 = 4
+
+
+import java.util.Scanner;
+
+class Solution {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt(); // Number of elements
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt(); // Read array elements
+        }
+
+        int max = arr[0];
+        int min = arr[0];
+
+        // Find maximum and minimum elements
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+
+        double result = (double) max / min; // Calculate the division result
+
+        System.out.println(result); // Print the result
+    }
+}
