@@ -66,3 +66,35 @@ public class ArrayRotation {
         }
     }
 }
+___________________________________________________________________________________________________________________________________________________________________
+
+import java.util.Scanner;
+
+public class RotateArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt(); // Number of elements
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt(); // Read array elements
+        }
+
+        int k = scanner.nextInt(); // Number of positions to rotate
+
+        // Create a new array to store the rotated elements
+        int[] rotatedArr = new int[n];
+
+        // Perform the rotation
+        for (int i = 0; i < n; i++) {
+            int newPosition = (i + k) % n; // Calculate the new position after rotation
+            rotatedArr[newPosition] = arr[i];
+        }
+
+        // Print the rotated array
+        for (int num : rotatedArr) {
+            System.out.print(num + " ");
+        }
+    }
+}
