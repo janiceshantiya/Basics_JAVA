@@ -1,0 +1,50 @@
+Write a program to reverse the given array
+
+Input Format
+8
+1 2 3 4 5 6 7 8
+
+Constraints
+input should be an array
+
+Output Format
+8 7 6 5 4 3 2 1
+
+Sample Input 
+5
+4 3 6 7 8
+
+Sample Output 
+8 7 6 3 4
+
+
+import java.util.Scanner;
+
+public class ReverseArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Read array size
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+
+        // Read array elements
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // Reverse the array
+        for (int i = 0; i < n / 2; i++) {
+            int temp = arr[i];
+            arr[i] = arr[n - 1 - i];
+            arr[n - 1 - i] = temp;
+        }
+
+        // Print the reversed array
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
+        scanner.close();
+    }
+}
